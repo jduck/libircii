@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# default cflags
+CFLAGS="-Wall -O2 -I."
+
+if [ -n "$1" ]; then
+   case $1 in
+      "def_debug")
+        CFLAGS="$CFLAGS -ggdb -DDEBUG"
+	shift
+   	;;
+      "sym_only")
+        CFLAGS="$CFLAGS -ggdb"
+	shift
+   	;;
+      *)
+        echo "arg must be one of the following: def_debug, sym_only"
+	echo " \`- using default CFLAGS.."
+	;;
+   esac
+fi
+
+export CFLAGS
+cd config
+make
+cd ..
+./configure $*
+make
+
+exit 0

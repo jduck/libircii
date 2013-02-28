@@ -1,0 +1,51 @@
+# Makefile.in
+# v0.11
+# last modified: 09/07/2001
+
+CC = @CC@
+CFLAGS = @CFLAGS@
+
+VERSION = @VERSION@
+
+LIBNAME = libircii
+
+SRC = libircii.c
+OBJ = libircii.o
+
+all: static
+
+targets:
+	@echo "valid targets: distclean clean static shared"
+
+install:
+	@echo "there is no install target yet."
+
+static: $(LIBNAME).a
+shared: $(LIBNAME).so.$(VERSION)
+
+$(LIBNAME).a: Makefile $(OBJ)
+	$(CC) $(CFLAGS) -c libircii.c
+	ar rc $(LIBNAME).a $(LIBNAME).o
+	ranlib $(LIBNAME).a
+
+
+$(LIBNAME).so.$(VERSION): Makefile $(OBJ)
+	$(CC) $(CFLAGS) -fpic -shared -o $(LIBNAME).so.$(VERSION) $(OBJS)
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+dist: distclean
+	cd ..; tar zcvf $(LIBNAME)-$(VERSION).tgz $(LIBNAME)-$(VERSION)
+
+distclean: clean
+	rm -f Makefile config.* configure
+
+clean:
+	rm -f *.o $(LIBNAME).so.$(VERSION) $(LIBNAME).a
+
+Makefile: configure
+configure: config/configure.in
+	cd config;make
+
+libircii.o: libircii.c libircii.h numeric.h

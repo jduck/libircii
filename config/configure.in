@@ -1,0 +1,35 @@
+dnl
+dnl don't understand?  http://www.gnu.org/manual/autoconf/
+dnl by: Joshua J. Drake <jdrake@qoop.org>
+dnl
+dnl last modified: 03/08/2001
+
+CFLAGS="-Wall -ggdb -O2 -I. -DDEBUG"
+
+AC_INIT(libircii.h)
+
+dnl grok the version number from libircii.h
+dnl
+VERSION=`grep IRCII_LIB_VERSION libircii.h | cut -d\" -f2`
+
+AC_REVISION($Revision: $VERSION $)
+
+echo "*** configuring libircii v$VERSION"
+echo
+
+AC_SUBST(VERSION)
+
+dnl initial stuff
+dnl
+
+AC_PROG_CC
+AC_PROG_CC_C_O
+
+AC_OUTPUT(Makefile)
+
+echo "*"
+echo "* ok, done checking stuff out.."
+echo "*   any problems email error output to jdrake@qoop.org."
+echo "*"
+echo "* right now is the time to run \"make\""
+echo "*"

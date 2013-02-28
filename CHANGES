@@ -1,0 +1,29 @@
+10/02/2001	jjd	- added TOPIC command
+
+03/21/2001	jjd	- changed directory name to include version #
+			- Makefile.in: modified to accomodate for above
+			- Makefile.in: modified dist target to us
+			  .ignore file 
+			  
+03/10/2001	jjd	- made it so if msg starts with : the : gets
+		 	  stripped off
+			- advanced version number to 0.11 for future
+			  release.. 
+			
+03/09/2001	jjd	- created a string array for easy conversion
+			  of type->text 
+			- changed ircii_print to use the above string
+			- modified Makefile.in for "make dist"
+			- increased version # to 0.10
+			
+02/24/2001	jjd	- created the ChangeLog... this hasn't been
+			  used in the past. It should have been..
+			- prefixed externally used functions with
+			  ircii_ 
+			- made DEBUG define not prototype the
+			  ircii_print function 
+			- created configure stuff for appending
+			  version number to shared object
+
+09/09/2001	jjd	- added numeric.h from ircd-hybrid-6.2rc1 (but
+			  i stripped the comments and prefixed NUM_)
