@@ -4,5 +4,6 @@ Makefile
 config.cache
 config.log
 config.status
+configure
 *.o
 *.a
